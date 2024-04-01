@@ -4,7 +4,7 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 public class IUDoubleLinkedList<T> implements IndexedUnsortedList<T> {
-    private Node2<T> head, tail;
+    private Node<T> head, tail;
     private int size;
     private int modCount;
 
@@ -202,7 +202,7 @@ public class IUDoubleLinkedList<T> implements IndexedUnsortedList<T> {
         
         
         boolean found = false;
-        Node2<T> current = head;
+        Node<T> current = head;
         int i = 0;
         while (current != null && !found) {
             if (element.equals(current.getElement())) {
@@ -239,7 +239,7 @@ public class IUDoubleLinkedList<T> implements IndexedUnsortedList<T> {
     @Override
     public boolean contains(T target) {
         boolean found = false;
-        Node2<T> current = head;
+        Node<T> current = head;
         while (current != null && !found) {
             if (target.equals(current.getElement())) {
                 found = true;
@@ -284,7 +284,7 @@ public class IUDoubleLinkedList<T> implements IndexedUnsortedList<T> {
         }
         StringBuilder str = new StringBuilder();
         str.append("[");
-        Node2<T> current = head;
+        Node<T> current = head;
         while (current != null) {
             str.append(current.getElement().toString());
             str.append(", ");
@@ -302,8 +302,8 @@ public class IUDoubleLinkedList<T> implements IndexedUnsortedList<T> {
 
         private int nextIndex;
         private int iterModCount;
-        private Node2<T> nextNode;
-        private Node2<T> prevReturnedNode;
+        private Node<T> nextNode;
+        private Node<T> prevReturnedNode;
 
         public DLLIterator() {
             this(0);
@@ -463,7 +463,7 @@ public class IUDoubleLinkedList<T> implements IndexedUnsortedList<T> {
             if (iterModCount != modCount) {
                 throw new ConcurrentModificationException();
             }
-            Node2<T> newNode = new Node2<T>(e);
+            Node<T> newNode = new Node<T>(e);
 
             //if the list has no elements
             if (isEmpty()) {
