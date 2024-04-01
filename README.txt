@@ -4,6 +4,7 @@ Discussion: a discussion of your experience writing this assignment. This could 
 
 ////IS TESTING FILE CORRECT?
 //FIX NODE2
+//did i get generics right in the overview?
 ****************
 * Double Linked List
 * CS 221 003
@@ -13,15 +14,18 @@ Discussion: a discussion of your experience writing this assignment. This could 
 
 OVERVIEW:
 
- Concisely explain what the program does. If this exceeds a couple
- of sentences, you're going too far. The details go in other
- sections.
-
+ This program creates an indexed unsorted double linked list (DLL) in which elements can be
+ manipulated (added, removed, set to different values, and more) and various
+ values can be retrieved (elements in particular spots, overall size,
+ if an element is in the list, a string format of the list, and more). 
+ The DLL also allows for a list iterator to be made, which provides standardized
+ navigation and manipulation of the list. The DLL was created with generic types,
+ meaning that it supports holding any object type.
 
 INCLUDED FILES:
 
  * IUDoubleLinkedList.java - source file
- * ListTester.java - testing file
+ * ListTester.java - source file
  * IndexedUnsortedList.java - source file
  * Node.java - source file
  * README.txt - this file
@@ -29,28 +33,40 @@ INCLUDED FILES:
 
 COMPILING AND RUNNING:
 
- Give the command for compiling the program, the command
- for running the program, and any usage instructions the
- user needs.
- 
- These are command-line instructions for a system like onyx.
- They have nothing to do with Eclipse or any other IDE. They
- must be specific - assume the user has Java installed, but
- has no idea how to compile or run a Java program from the
- command-line.
- 
- e.g.
  From the directory containing all source files, compile the
- driver class (and all dependencies) with the command:
- $ javac Class1.java
+ driver class, which is ListTester.java, (and all dependencies) with the command:
+ $ javac ListTester.java
 
  Run the compiled class file with the command:
- $ java Class1
+ $ java ListTester
 
- Console output will give the results after the program finishes.
+ Console output will give the results of the tests after the program finishes.
 
 
 PROGRAM DESIGN AND IMPORTANT CONCEPTS:
+
+This program creates an Indexed Unsorted Double Linked List.
+
+Starting from the basics, a general list is an abstract data type (ADT), or the mental
+model of how data is managed. It's important that whatever the ADT is--whether that's a 
+stack, queue, or in this case, a list--the operations that can be performed on that data
+align with what makes sense in the user's mind for that ADT. 
+
+While stacks and queues have a little more restrictions on what operations can be performed,
+lists have considerably more options. common types
+
+This specific program creates an indexed list, meaning that the elements can be accessed
+directly by their location (for instance, the 7th element in the list). Personally, I think 
+of it like when you start typing a numbered To Do List on Microsoft Word. You can add or delete
+To Do List items at any point in your document and the numbers are automatically updated. 
+
+Additionally, this list is an unsorted list, meaning that there is no inherent order. For 
+a sorted list, for instance, String elements could be maintained so they were always in 
+alphabetical order. However, for an unsorted list, the elements stay in the relative position
+that they were placed in (of course, this position will be affected by the placement/deletion
+of other elements in the list, not saying that the 3rd element will necessarily always be the 
+third element).
+
 
 In this project, a double linked list was created.
 what is a list
