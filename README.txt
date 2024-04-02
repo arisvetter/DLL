@@ -64,8 +64,14 @@ Additionally, this list is an unsorted list, meaning that there is no inherent o
 a sorted list, for instance, String elements could be maintained so they were always in 
 alphabetical order. However, for an unsorted list, the elements stay in the relative position
 that they were placed in (of course, this position will be affected by the placement/deletion
-of other elements in the list, not saying that the 3rd element will necessarily always be the 
-third element).
+of other elements in the list, not saying that the current 3rd element will necessarily always
+be the third element).
+
+A linked list is a specific type of list built from Nodes. I think of Nodes as a container for
+the element. In this case, each Node has three pointers: one points to the Node that is after
+it, one that points to the Node that comes before it, and one points to the element that it 
+represents. Alternatively, a single linked list would just have two pointers--a pointer to the
+Node that comes after it and a pointer to its element. 
 
 
 In this project, a double linked list was created.
@@ -88,7 +94,7 @@ what is a list
 -DLL
 -IUList
 -node
--DLLIterator
+-DLLIterator (subclass)
 
 -why use DLLIterator in all of my method implementation? clarity, simplicity, less code duplication MAYBE NOT ALWAYS MORE EFFICIENT
 -only a few methods where it was completely unecessary
