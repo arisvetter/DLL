@@ -1,3 +1,5 @@
+import java.util.ListIterator;
+
 public class BasicDriver {
     
     public static void main(String[] args){
@@ -32,14 +34,38 @@ public class BasicDriver {
 
         dll.removeLast();
         System.out.println(dll.toString());
-        //SHOULD BE 01 but is 12
+        //01
 
         System.out.println(dll.size());
-        //should be 2
+        //2
 
         dll.add(2,3);
         System.out.println(dll.toString());
-        //was added to the front instead
+        //013
+
+        Integer three = new Integer(3);
+        dll.remove(three);
+        System.out.println(dll.toString());
+        //01
+
+        Integer zero = new Integer(0);
+        dll.remove(zero);
+        System.out.println(dll.toString());
+        //1
+
+        Integer one = new Integer(1);
+        dll.remove(one);
+        System.out.println(dll.toString());
+        //
+
+        dll.add(1);
+        dll.add(2);
+        System.out.println(dll.toString());
+        //12
+
+        ListIterator myLI = dll.listIterator();
+
+
 
 
         

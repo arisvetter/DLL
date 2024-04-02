@@ -172,3 +172,9 @@ DISCUSSION:
  Discuss the issues you encountered during programming (development)
  and testing. What problems did you have?  What kinds of errors did you get? How did you 
  fix them?
+
+ was having really random issues so had to make a basic driver class. realized in what scenarios
+ the output was not what i expected//recreated testing scenarios that wer failing and 
+ then walked thru it. 
+
+ realized one of my testing scenarios (AB_listIterRemoveA_B) was wrong... accidently had two it.next(); instead of 1

@@ -577,7 +577,6 @@ public class ListTester {
 		IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
 		ListIterator<Integer> it = list.listIterator();
 		it.next();
-        it.next();
 		it.remove();
 		return list;
 	}
