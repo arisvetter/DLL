@@ -178,3 +178,4 @@ DISCUSSION:
  then walked thru it. 
 
  realized one of my testing scenarios (AB_listIterRemoveA_B) was wrong... accidently had two it.next(); instead of 1
+ same with AB_ListIterator2PreviousRemove_B... should be AB_ListIterator2PreviousRemove_A so output was wrong

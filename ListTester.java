@@ -191,7 +191,7 @@ public class ListTester {
         testSingleElementList(AB_IterRemoveA_B, "AB_IterRemoveA_B", LIST_A, STRING_A);
 		testSingleElementList(AB_listIterRemoveA_B, "AB_listIterRemoveA_B", LIST_B, STRING_B);
 		testSingleElementList(AB_ListIterator1PreviousRemove_B, "AB_ListIterator1PreviousRemove_B", LIST_B, STRING_B);
-		testSingleElementList(AB_ListIterator2PreviousRemove_B, "AB_ListIterator2PreviousRemove_B", LIST_B, STRING_B);
+		testSingleElementList(AB_ListIterator2PreviousRemove_A, "AB_ListIterator2PreviousRemove_A", LIST_A, STRING_A);
 		//2-element to 3-element
         testThreeElementList(AB_addAfterCB_ABC, "AB_addAfterCB_ABC", LIST_ABC, STRING_ABC);
         testThreeElementList(AB_addToRearC_ABC, "AB_addToRearC_ABC", LIST_ABC, STRING_ABC);
@@ -612,17 +612,17 @@ public class ListTester {
 
 	// 57) [A,B] -> iterator remove() after previous() returns A -> [B]
 
-	/** Scenario: [A, B] -> AB_ListIterator2PreviousRemove_B -> [B] 
-	 * @return [B] after AB_ListIterator2PreviousRemove_B
+	/** Scenario: [A, B] -> AB_ListIterator2PreviousRemove_A -> [A] 
+	 * @return [A] after AB_ListIterator2PreviousRemove_A
 	 */
-	private IndexedUnsortedList<Integer> AB_ListIterator2PreviousRemove_B() {
+	private IndexedUnsortedList<Integer> AB_ListIterator2PreviousRemove_A() {
 		IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
 		ListIterator<Integer> it = list.listIterator(2);
 		it.previous();
 		it.remove();
 		return list;
 	}
-	private Scenario<Integer> AB_ListIterator2PreviousRemove_B = () -> AB_ListIterator2PreviousRemove_B();
+	private Scenario<Integer> AB_ListIterator2PreviousRemove_A = () -> AB_ListIterator2PreviousRemove_A();
 
 	// 58) [A,B] -> iterator remove() after previous() returns B -> [A]
 
@@ -658,7 +658,7 @@ public class ListTester {
 	 */
 	private IndexedUnsortedList<Integer> ABC_ListIter2PreviousRemove_AC() {
 		IndexedUnsortedList<Integer> list = AB_addToRearC_ABC(); 
-		ListIterator<Integer> it = list.listIterator(1);
+		ListIterator<Integer> it = list.listIterator(2);
 		it.previous();
 		it.remove();
 		return list;
@@ -1365,11 +1365,6 @@ public class ListTester {
 				printTest(scenarioName + "_testListIter2PreviousNextRemove", testIterRemove(listIterAfterNext(listIterAfterPrevious(scenario.build().listIterator(2), 1), 1), Result.NoException));
 				printTest(scenarioName + "_testListIter2PreviousNextAdd", testListIterAdd(listIterAfterNext(listIterAfterPrevious(scenario.build().listIterator(2), 1), 1), ELEMENT_X, Result.NoException));			
 				printTest(scenarioName + "_testListIter2PreviousNextSet", testListIterSet(listIterAfterNext(listIterAfterPrevious(scenario.build().listIterator(2), 1), 1), ELEMENT_X, Result.NoException));
-
-				//test LI methods starting at index 2 after call to previous three times
-				printTest(scenarioName + "_testListIter2PreviousPreviousPreviousRemove", testIterRemove(listIterAfterPrevious(scenario.build().listIterator(2), 3), Result.NoException));
-				printTest(scenarioName + "_testListIter2PreviousPreviousPreviousAdd", testListIterAdd(listIterAfterPrevious(scenario.build().listIterator(2), 3), ELEMENT_X, Result.NoException));			
-				printTest(scenarioName + "_testListIter2PreviousPreviousPreviousSet", testListIterSet(listIterAfterPrevious(scenario.build().listIterator(2), 3), ELEMENT_X, Result.NoException));
 
 				//test LI methods starting at index 3
 				printTest(scenarioName + "_testListIter3HasNext", testIterHasNext(scenario.build().listIterator(3), Result.False));
