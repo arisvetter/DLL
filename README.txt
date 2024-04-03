@@ -191,7 +191,11 @@ problems: the attempted optimization of the ListIterator constructor by starting
 from the head or the tail side depending on the starting index.
 
 The code I had originally written for that section was causing serious problems
-because 
+because I was starting the iterator at tail when my nextIndex was starting at the 
+maximum acceptable index value (which was the size of the list). Thus, my nextIndex 
+was always after the nextNode rather than before. To solve that issue, I made a special
+case for when the starting index was equal to size, and subtracted one from the
+nextIndex value. 
 
 Other than that, the rest of my issues left were because of mistakes I had made in
 the testing class. One of my testing scenarios, B_listIterRemoveA_B, was wrong...  I 
