@@ -73,6 +73,7 @@ it, one that points to the Node that comes before it, and one points to the elem
 represents. Alternatively, a single linked list would just have two pointers--a pointer to the
 Node that comes after it and a pointer to its element. 
 
+I 
 
 In this project, a double linked list was created.
 what is a list
@@ -186,9 +187,20 @@ step, I printed the toString() of the DLL to the console and compared it to what
 expected. This allowed me to immediately pinpoint which methods were causing errors, 
 where I could then call the Debugger. For me, the simplicity of the basic driver class
 made the debugging process so much easier to do, and I quickly found the source of my
-problems: the attempted optimization of the ListIterator constructor.
+problems: the attempted optimization of the ListIterator constructor by starting 
+from the head or the tail side depending on the starting index.
 
 The code I had
+
+Other than that, the rest of my issues left were because of mistakes I had made in
+the testing class. One of my testing scenarios, B_listIterRemoveA_B, was wrong...  I 
+accidently had two "it.next();" in the scenario instead of just one. One of my scenarios
+I had labeled was AB_ListIterator2PreviousRemove_B. However, walking through that scenario,
+the ListIterator starts at the very end and is removing the last Node. I had written it 
+expecting it to remove the first Node, so I had to adjust that. Finally, in scenario 
+ABC_ListIter2PreviousRemove_AC, I set the ListIter to start at index 1 when index 2 was
+what I was supposed to do. Identifying these problems, after the rest of my code was functioning
+properly, was easy and simple.
 
 
 

@@ -261,9 +261,33 @@ public class IUDoubleLinkedList<T> implements IndexedUnsortedList<T> {
             // to keep track of iterator concurrency
             iterModCount = modCount;
 
+            if (startingIndex < (size / 2)) {
+                if (startingIndex == size) {
+                    nextNode = null;
+                    nextIndex = size;
+                } else {
+                    nextNode = tail;
+                    for (int i = size - 1; i > startingIndex; i--) {
+                        nextNode = nextNode.getPrevious();
+                        nextIndex--;
+                    }
+                }
+            } else {
+                nextNode = head;
+                for (nextIndex = 0; nextIndex < startingIndex; nextIndex++) {
+                    nextNode = nextNode.getNext();
+                }
+
+            }
+            nextIndex = startingIndex;
+
+            prevReturnedNode = null;
+
             // SOMETHING IS WRONG WITH THE IF SIZE / 2
             /*
              * if (startingIndex < (size / 2)){
+             * if(startingIndex == size){
+             * nextNode = null;}
              * nextNode = head;
              * for (nextIndex = 0; nextIndex < startingIndex; nextIndex++) {
              * nextNode = nextNode.getNext();
@@ -289,13 +313,6 @@ public class IUDoubleLinkedList<T> implements IndexedUnsortedList<T> {
              * }
              */
 
-            nextNode = head;
-            for (nextIndex = 0; nextIndex < startingIndex; nextIndex++) {
-                nextNode = nextNode.getNext();
-            }
-            nextIndex = startingIndex;
-
-            prevReturnedNode = null;
         }
 
         @Override
