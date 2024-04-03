@@ -190,7 +190,8 @@ made the debugging process so much easier to do, and I quickly found the source 
 problems: the attempted optimization of the ListIterator constructor by starting 
 from the head or the tail side depending on the starting index.
 
-The code I had
+The code I had originally written for that section was causing serious problems
+because 
 
 Other than that, the rest of my issues left were because of mistakes I had made in
 the testing class. One of my testing scenarios, B_listIterRemoveA_B, was wrong...  I 
