@@ -169,6 +169,29 @@ DISCUSSION:
  the kind of bare Double Linked List API and the informational slides on Canvas.
  (https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html)
 
+I started off this assignment by just trying to flesh out every method. Once that
+was all complete, I was failing around 300 tests out of a little over 4000. I had
+a lot of trouble finding any issues at all. The tests I was failing seemed to be 
+kind of random. Some methods would work in some scenarios but not in others, even
+thought the scenarios themselves would have the correct toString() output.
+
+For that reason, I struggled to find exactly which parts of my code were likely to
+contain the bugs. Debugging with this testing class was harder than I anticipated,
+so I didn't find anything important using the Debugger. I instead opted to really 
+nitpick every little line of code in my entire IUDoubleLinkedList class. However,
+after spending countless hours with that approach to no avail, I decided I needed 
+a change. I opted to create an extremely simple driver class, in which I called the
+IUDoubleLinkedList constructor and used all of the methods in different ways. At each
+step, I printed the toString() of the DLL to the console and compared it to what I 
+expected. This allowed me to immediately pinpoint which methods were causing errors, 
+where I could then call the Debugger. For me, the simplicity of the basic driver class
+made the debugging process so much easier to do, and I quickly found the source of my
+problems: the attempted optimization of the ListIterator constructor.
+
+The code I had
+
+
+
  Discuss the issues you encountered during programming (development)
  and testing. What problems did you have?  What kinds of errors did you get? How did you 
  fix them?
@@ -179,3 +202,4 @@ DISCUSSION:
 
  realized one of my testing scenarios (AB_listIterRemoveA_B) was wrong... accidently had two it.next(); instead of 1
  same with AB_ListIterator2PreviousRemove_B... should be AB_ListIterator2PreviousRemove_A so output was wrong
+smae with ABC_ListIter2PreviousRemove_AC.... didnt set the iterator at index 2 but isntead index 1
