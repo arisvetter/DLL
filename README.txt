@@ -18,9 +18,13 @@ OVERVIEW:
  manipulated (added, removed, set to different values, and more) and various
  values can be retrieved (elements in particular spots, overall size,
  if an element is in the list, a string format of the list, and more). 
- The DLL also allows for a list iterator to be made, which provides standardized
- navigation and manipulation of the list. The DLL was created with generic types,
+  The DLL was created with generic types,
  meaning that it supports holding any object type.
+
+ -say u defined list iterator in dll
+ -added to test class in development
+
+ -make shorter look at project description
 
 INCLUDED FILES:
 
@@ -47,13 +51,14 @@ PROGRAM DESIGN AND IMPORTANT CONCEPTS:
 
 This program creates an Indexed Unsorted Double Linked List.
 
-Starting from the basics, a general list is an abstract data type (ADT), or the mental
+Starting from the basics, a general list is a specific abstract data type (ADT), or a mental
 model of how data is managed. It's important that whatever the ADT is--whether that's a 
 stack, queue, or in this case, a list--the operations that can be performed on that data
 align with what makes sense in the user's mind for that ADT. 
 
 While stacks and queues have a little more restrictions on what operations can be performed,
-lists have considerably more options. common types
+lists have considerably more options. Just like you could with typing up a list in a document,
+you can add to any 
 
 This specific program creates an indexed list, meaning that the elements can be accessed
 directly by their location (for instance, the 7th element in the list). Personally, I think 
@@ -68,12 +73,30 @@ of other elements in the list, not saying that the current 3rd element will nece
 be the third element).
 
 A linked list is a specific type of list built from Nodes. I think of Nodes as a container for
-the element. In this case, each Node has three pointers: one points to the Node that is after
+the element. In this case (of a DLL), each Node has three pointers: one points to the Node that is after
 it, one that points to the Node that comes before it, and one points to the element that it 
-represents. Alternatively, a single linked list would just have two pointers--a pointer to the
-Node that comes after it and a pointer to its element. 
+represents. There are two additional Nodes that are alawys kept track of: the first Node and the last Node.
+Alternatively, a single linked list would just have two pointers--a pointer to the
+Node that comes after it and a pointer to its element. Single linked lists also keep track of the head
+and tail nodes. 
 
-I 
+The purpose of double linking a list is so that methods can improve efficiency by being able to start
+at the front or the back of a list and move to the next or previous node. For some methods, like addToRear(),
+the single linked list would have to iterate through the entire list just to get the Node before the tail
+node. That makes the method an O(n) order, or a linear function. However, in a double linked list, the method
+would be able to start at the rear and get the previous Node, getting rid of the need to loop through the entire
+list. So, in some cases, the DLL would be able to perform a function at a constant order that a single linked
+list wouldn't be able to. 
+
+An ArrayList, which is an indexed list, is advantagous when elements will often need to be referenced directly
+by index. However, when adding or removing from anywhere but the end of the list, the elements will need
+to be shifted so that there is no empty index with no element (which is an O(n) order process). 
+
+When it comes down to the difference between a single linked list, an arrayList, and a double
+linked list, it all comes down to the situatiion of how you'll be using the lists. 
+
+This program is made using generic types, meaning that the list can have parameters of any data type (whether 
+that is ints, Strings, or a type the user defines like "MagicSquares" or "Posts").
 
 In this project, a double linked list was created.
 what is a list
@@ -86,7 +109,8 @@ what is a list
     -what you are looking to optimize
     -other list options available
 
--List iterators vs iterators
+-List iterators vs iterators USED METHODS WENT 
+    -differences
     -why have an iterator
     -potential advantages of previous
     -section where I started from the back if in the back half... 
@@ -95,7 +119,7 @@ what is a list
 -DLL
 -IUList
 -node
--DLLIterator (subclass)
+-DLLIterator (subclass/helper class)
 
 -why use DLLIterator in all of my method implementation? clarity, simplicity, less code duplication MAYBE NOT ALWAYS MORE EFFICIENT
 -only a few methods where it was completely unecessary
@@ -121,13 +145,40 @@ what is a list
  how they work together, why did you design the program this way? What, if 
  anything, could be improved? 
 
+
+ POSSIBLE improvements
+ -duplicates
+
+
 TESTING:
 
  How did you test your program to be sure it works and meets all of the
- requirements? What was the testing strategy? What kinds of tests were run?
- Can your program handle bad input? Is your program  idiot-proof? How do you 
- know? What are the known issues / bugs remaining in your program?
+ requirements? 
+ -different size lists
+ -testing all the methods
+ -testing methods in different orders
+ 
+ What was the testing strategy? What kinds of tests were run?
+ -try hit as manuy high value scenarios as possible
+ -prioritized edge cases (zero and last index)
 
+ -series of blackbox tests
+
+ Can your program handle bad input? 
+ -illegal  states and by definition of dll-use javadocs to make sure correct
+ -duplicates
+ -handling bad input with testing class
+ 
+ Is your program  idiot-proof? 
+ -yes, cant do anything tht isnt allowed for a list
+ 
+ How do you 
+ know? 
+ -tested so many scenarios
+ 
+ 
+ What are the known issues / bugs remaining in your program?
+-two paragraphs
  -one element lists
  -two element lists and on and on
 
@@ -206,17 +257,3 @@ expecting it to remove the first Node, so I had to adjust that. Finally, in scen
 ABC_ListIter2PreviousRemove_AC, I set the ListIter to start at index 1 when index 2 was
 what I was supposed to do. Identifying these problems, after the rest of my code was functioning
 properly, was easy and simple.
-
-
-
- Discuss the issues you encountered during programming (development)
- and testing. What problems did you have?  What kinds of errors did you get? How did you 
- fix them?
-
- was having really random issues so had to make a basic driver class. realized in what scenarios
- the output was not what i expected//recreated testing scenarios that wer failing and 
- then walked thru it. 
-
- realized one of my testing scenarios (AB_listIterRemoveA_B) was wrong... accidently had two it.next(); instead of 1
- same with AB_ListIterator2PreviousRemove_B... should be AB_ListIterator2PreviousRemove_A so output was wrong
-smae with ABC_ListIter2PreviousRemove_AC.... didnt set the iterator at index 2 but isntead index 1

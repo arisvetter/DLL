@@ -8,6 +8,7 @@ public class IUDoubleLinkedList<T> implements IndexedUnsortedList<T> {
     private int size;
     private int modCount;
 
+    /** write a javadoc  p*/
     public IUDoubleLinkedList() {
         size = 0;
         modCount = 0;
@@ -253,6 +254,16 @@ public class IUDoubleLinkedList<T> implements IndexedUnsortedList<T> {
             this(0);
         }
 
+
+        /** ADD JAVADOC iiterator at starting indxnitialize new dll 
+         * 
+        */
+
+
+        /**
+         * 
+         * @param startingIndex
+         */
         public DLLIterator(int startingIndex) {
             if ((startingIndex < 0) || (startingIndex > size)) {
                 throw new IndexOutOfBoundsException();
@@ -261,7 +272,7 @@ public class IUDoubleLinkedList<T> implements IndexedUnsortedList<T> {
             // to keep track of iterator concurrency
             iterModCount = modCount;
 
-            if (startingIndex < (size / 2)) {
+            if (startingIndex > (size / 2)) {
                 if (startingIndex == size) {
                     nextNode = null;
                     nextIndex = size;
@@ -282,36 +293,6 @@ public class IUDoubleLinkedList<T> implements IndexedUnsortedList<T> {
             nextIndex = startingIndex;
 
             prevReturnedNode = null;
-
-            // SOMETHING IS WRONG WITH THE IF SIZE / 2
-            /*
-             * if (startingIndex < (size / 2)){
-             * if(startingIndex == size){
-             * nextNode = null;}
-             * nextNode = head;
-             * for (nextIndex = 0; nextIndex < startingIndex; nextIndex++) {
-             * nextNode = nextNode.getNext();
-             * }
-             * } else {
-             * nextNode = tail;
-             * for (nextIndex = size + 1; nextIndex > (startingIndex - 1); nextIndex--){
-             * nextNode = nextNode.getPrevious();
-             * }
-             * }
-             * 
-             * ((size / 2) < startingIndex) {
-             * nextNode = tail;
-             * for (nextIndex = size - 1; nextIndex > startingIndex; nextIndex--) {
-             * nextNode = nextNode.getPrevious();
-             * }
-             * 
-             * } *else {
-             * nextNode = head;
-             * for (nextIndex = 0; nextIndex < startingIndex; nextIndex++) {
-             * nextNode = nextNode.getNext();
-             * }
-             * }
-             */
 
         }
 
