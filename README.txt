@@ -1,10 +1,3 @@
-Design: describe the roles of and relationships between the interface and classes that make up this program. You had choices about how to implement many methods; why did you choose what you chose?
-Testing: a detailed description of your testing procedure. You should describe how you tested your class and what bugs you found and fixed by doing so.
-Discussion: a discussion of your experience writing this assignment. This could be in the form of a journal.
-
-////IS TESTING FILE CORRECT?
-//FIX NODE2
-//did i get generics right in the overview?
 ****************
 * Double Linked List
 * CS 221 003
@@ -14,17 +7,13 @@ Discussion: a discussion of your experience writing this assignment. This could 
 
 OVERVIEW:
 
- This program creates an indexed unsorted double linked list (DLL) in which elements can be
- manipulated (added, removed, set to different values, and more) and various
- values can be retrieved (elements in particular spots, overall size,
- if an element is in the list, a string format of the list, and more). 
-  The DLL was created with generic types,
- meaning that it supports holding any object type.
+ This program creates an indexed unsorted double linked list with a ListIterator 
+ in which elements can be manipulated (added, removed, set to different values, 
+ and more) and various values can be retrieved (elements in particular spots, 
+ overall size of the list, if an element is in the list, a string format of the list, etc). 
+ This functionality of this test was reviewed with a ListTester class, which was added to 
+ in development.
 
- -say u defined list iterator in dll
- -added to test class in development
-
- -make shorter look at project description
 
 INCLUDED FILES:
 
@@ -58,12 +47,12 @@ align with what makes sense in the user's mind for that ADT.
 
 While stacks and queues have a little more restrictions on what operations can be performed,
 lists have considerably more options. Just like you could with typing up a list in a document,
-you can add to any 
+you can add to any position, remove any element or position, change the values at any position,
+and retrieve information from any position.
 
 This specific program creates an indexed list, meaning that the elements can be accessed
-directly by their location (for instance, the 7th element in the list). Personally, I think 
-of it like when you start typing a numbered To Do List on Microsoft Word. You can add or delete
-To Do List items at any point in your document and the numbers are automatically updated. 
+directly by their location (for instance, the 7th element in the list). You can add or delete
+elements and the indexes are automatically updated. 
 
 Additionally, this list is an unsorted list, meaning that there is no inherent order. For 
 a sorted list, for instance, String elements could be maintained so they were always in 
@@ -75,10 +64,13 @@ be the third element).
 A linked list is a specific type of list built from Nodes. I think of Nodes as a container for
 the element. In this case (of a DLL), each Node has three pointers: one points to the Node that is after
 it, one that points to the Node that comes before it, and one points to the element that it 
-represents. There are two additional Nodes that are alawys kept track of: the first Node and the last Node.
+represents. There are two additional Nodes that are always kept track of: the first Node and the last Node.
 Alternatively, a single linked list would just have two pointers--a pointer to the
 Node that comes after it and a pointer to its element. Single linked lists also keep track of the head
-and tail nodes. 
+and tail nodes. The purpose of having a list be linked, rather than an arrayList, is so that each time
+an element is added or removed to/from anywhere besides the end of the list, elements do not need to be 
+"shifted" to adjust their position. Instead, only the pointers before and after the modification need to 
+point to a different node. 
 
 The purpose of double linking a list is so that methods can improve efficiency by being able to start
 at the front or the back of a list and move to the next or previous node. For some methods, like addToRear(),
@@ -88,101 +80,62 @@ would be able to start at the rear and get the previous Node, getting rid of the
 list. So, in some cases, the DLL would be able to perform a function at a constant order that a single linked
 list wouldn't be able to. 
 
-An ArrayList, which is an indexed list, is advantagous when elements will often need to be referenced directly
-by index. However, when adding or removing from anywhere but the end of the list, the elements will need
-to be shifted so that there is no empty index with no element (which is an O(n) order process). 
+While avoiding shifting elements gives linked lists the runtime advantage for methods involving adding or removing
+from anywhere other than the end of the list, arrayLists can directly retrieve an element at a given index
+in constant run time. This means that if you plan on accessing items by index frequently, an arrayList is 
+likely a better option. These types of lists also differ in terms of their memory usage. Double linked lists
+require keeping track of three pointers per item of the list and single linked lists require two pointers per item.
+An arrayList uses memory for the entire list that was created, whether that list is completely empty or full,
+so this list type approximately uses 1.5 times the memory spaces as the number of items in the list. So,
+which list is preferrable really depends on what type of efficiency you want to prioritize and how which methods
+you plan on using most.
 
-When it comes down to the difference between a single linked list, an arrayList, and a double
-linked list, it all comes down to the situatiion of how you'll be using the lists. 
+The methods of this program are implemented using a ListIterator. A ListIterator inherits the
+functionality of the Iterable class. The purpose of iterators in generally so that all collections
+can be navigated through (like in a for-each loop) in a standardized way.  The ListIterator can be 
+initialized at any valid index within the list. If the starting index is in the second half of the list, 
+the iterator actually starts at the tail end and navigates in reverse order to improve the run time for 
+large lists. Its methods include ways to navigate the list as well as ways to modify the list (including 
+setting, removing, and adding elements). Becuase these functions can perform everything that is required 
+in the methods of the IUDoubleLinkedList class, for the purpose of avoiding code duplication, I used the 
+ListIterator in almost all of my methods.
 
-This program is made using generic types, meaning that the list can have parameters of any data type (whether 
-that is ints, Strings, or a type the user defines like "MagicSquares" or "Posts").
+The final major part of this project was adding to the ListTester class. This will be described in the
+testing section of the README.
 
-In this project, a double linked list was created.
-what is a list
-
---what is a double linked list
-    -what is a node
-    -generic types
-    -order run time
-    -situations it would be ideal for
-    -what you are looking to optimize
-    -other list options available
-
--List iterators vs iterators USED METHODS WENT 
-    -differences
-    -why have an iterator
-    -potential advantages of previous
-    -section where I started from the back if in the back half... 
-    -using iterators to perform all other methods
-
--DLL
--IUList
--node
--DLLIterator (subclass/helper class)
-
--why use DLLIterator in all of my method implementation? clarity, simplicity, less code duplication MAYBE NOT ALWAYS MORE EFFICIENT
--only a few methods where it was completely unecessary
-
-
-
- This is the sort of information someone who really wants to
- understand your program - possibly to make future enhancements -
- would want to know.
-
- Explain the main concepts and organization of your program so that
- the reader can understand how your program works. This is not a repeat
- of javadoc comments or an exhaustive listing of all methods, but an
- explanation of the critical algorithms and object interactions that make
- up the program.
-
- Explain the main responsibilities of the classes and interfaces that make
- up the program. Explain how the classes work together to achieve the program
- goals. If there are critical algorithms that a user should understand, 
- explain them as well.
- 
- If you were responsible for designing the program's classes and choosing
- how they work together, why did you design the program this way? What, if 
- anything, could be improved? 
-
-
- POSSIBLE improvements
- -duplicates
+In summary, the double linked list class implements the indexed unsorted lists class.
+It organizes and structures itself using the Node class to represent the element and its
+position in the list. It performs its methods as well as allows for iteration using the
+DLLIterator subclass. The ListTester class validates that the DLL works as desired.
 
 
 TESTING:
 
- How did you test your program to be sure it works and meets all of the
- requirements? 
- -different size lists
- -testing all the methods
- -testing methods in different orders
- 
- What was the testing strategy? What kinds of tests were run?
- -try hit as manuy high value scenarios as possible
- -prioritized edge cases (zero and last index)
+To ensure that my program works and meets the requirements, I added to the ListTester 
+class. This class tested a variety of scenarios, ranging in size from empty lists to
+three element lists, and after different series of method calls. Within each scenario,
+every method was tested, and both valid and invalid inputs were given when applicable
+(for instance, the remove at a specific index method was tested for indexes that were 
+and weren't in the list). While obviously not every possibility was tested, because of
+the large variety of scenarios that were tested, and the fact that edge cases were frequently
+tested, I feel confident in the functionality of the program.
 
- -series of blackbox tests
+My testing strategy was trying to hit as many high value scenarios as possible--meaning
+unique scenarios or scenarios that depend on many methods working simultaneously... 
+essentially that ones that are most likely to reveal issues in the code. Additionally, 
+edge cases were prioritized. The kind of tests that were ran were the general list tests, iterator tests, 
+list iterator tests, and iterator concurrency tests. Concurrency tests check that if the test is
+modified externally since the iterator was created, a ConcurrentModificationException is thrown.
 
- Can your program handle bad input? 
- -illegal  states and by definition of dll-use javadocs to make sure correct
- -duplicates
- -handling bad input with testing class
- 
- Is your program  idiot-proof? 
- -yes, cant do anything tht isnt allowed for a list
- 
- How do you 
- know? 
- -tested so many scenarios
- 
- 
- What are the known issues / bugs remaining in your program?
--two paragraphs
- -one element lists
- -two element lists and on and on
-
-
+My program can handle bad input in the way that was described in the DLL javadocs.
+Different exceptions are required to be thrown in cases of bad input (such as an index
+out of bounds exception if the index given was incorrect), and the testing class looks
+for the program to successfully output the correct exception. In that sense, the program 
+is idiot proof to the level that the indexed unsorted list interface designed it. I know
+that because that was the standard that we compared our program's performance to in the
+testing process. There are no known bugs in the program, but there is no consideration about 
+the handling of duplicate values (which would likely mess up methods that search for an 
+element in the list, like remove(element)).
 
 DISCUSSION:
 
@@ -196,19 +149,18 @@ DISCUSSION:
  should be implemented. Now, I feel very comfortable navigating the 
  ListTester and understanding what each section of it does. I think it
  would be a daunting task to have to create a (relatively) large 
- testing class like this one independantly, but now that I've seen what
+ testing class like this one independently, but now that I've seen what
  one looks like, I at least would know how to begin.
 
  The biggest "Aha!" moment for me was when in class, the idea of using the
  ListIterator to complete all of the other methods in the double linked list
  was suggested. Before, I was still not loving the idea of having to make a 
- List Iterator. I know the reasoning--that it provides a standardized way to
- move through lists, so that no matter what kind of list, it could be navigated 
- through easily. But, I still wasn't convinced that it was that useful or 
- powerful of a tool (I saw it as almost unecessary code). Seeing the ListIterator's
+ List Iterator. I know the reasoning--so that no matter what kind of list, 
+ it could be navigated through easily. But, I still wasn't convinced that it was that useful 
+ or powerful of a tool (I saw it as almost unecessary code). Seeing the ListIterator's
  ability to take the place of basically every other part of my code was definitely
  a shift in my perspective. I finally understood the excitement around having a 
- ListIterator, and seeing my previosly very long methods compact to a couple 
+ ListIterator, and seeing my previously very long methods compact to a couple 
  of lines was so satisfying. 
 
  One of my other biggest takeaways was, unfortunately, that drawing a picture
@@ -225,7 +177,7 @@ I started off this assignment by just trying to flesh out every method. Once tha
 was all complete, I was failing around 300 tests out of a little over 4000. I had
 a lot of trouble finding any issues at all. The tests I was failing seemed to be 
 kind of random. Some methods would work in some scenarios but not in others, even
-thought the scenarios themselves would have the correct toString() output.
+though the scenarios themselves would have the correct toString() output.
 
 For that reason, I struggled to find exactly which parts of my code were likely to
 contain the bugs. Debugging with this testing class was harder than I anticipated,
